@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ValueFirstAssignment.DataAccess.User>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommunicationAddress)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.RolesName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommunicationAddress)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.RolesName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+
+    </tr>
+}
+
+</table>

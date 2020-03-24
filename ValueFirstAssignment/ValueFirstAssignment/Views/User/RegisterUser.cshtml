@@ -1,0 +1,103 @@
+﻿@using ValueFirstAssignment.DataAccess
+@model IEnumerable<ValueFirstAssignment.DataAccess.User>
+
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RegisterUser</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommunicationAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RolesName)
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => item.UserId)
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommunicationAddress)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.RolesName)
+        </td>
+
+        <td>
+            @*@Html.DisplayFor(modelItem => item.IsActive)*@
+            @(item.IsActive ? "Active" : "Inactive")
+        </td>
+
+        <td>
+            @if (User.IsInRole(nameof(RoleEnum.Admin)) || User.IsInRole(nameof(RoleEnum.Admin)))
+            {
+                @Html.ActionLink("Edit", "RegisterUserEdit", new { id = item.UserId })
+                <span>|</span>
+            }
+            @Html.ActionLink(item.IsActive ? "Inactive" : "Active", "ChangeStatus", new { id = item.UserId })
+        </td>
+    </tr>
+    }
+
+</table>
+
+
+
+@*<script type="text/javascript">
+        $(function () {
+            $("#btnGet").click(function () {
+                $.ajax({
+                    type: "Get",
+                    url: "/User/ChangeStatus/"+ $("#txtName").val(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+        });
+</script>*@
